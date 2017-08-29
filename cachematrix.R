@@ -29,7 +29,8 @@ makeCacheMatrix <- function(x = matrix()) {
   
   list(set=set, #creates a list of the functions making them accesible as x$functionname
        get=get,
-       get_inv=get_inv)
+       get_inv=get_inv,
+       set_inv=set_inv)
   
 }
 
@@ -50,7 +51,7 @@ cacheSolve <- function(x, ...) {
   
   data <- x$get()                       # If it IS null then we want to get the input data to calculate the inverse
 
-  inv_x <- solve(x)                     # Do the hard bit (invert the matrix)
+  inv_x <- solve(data)                  # Do the hard bit (invert the matrix)
   x$set_inv(inv_x)                      # Use the function we put in the object to set the cache to our solution
   
   inv_x                                 # return the inverse (as just calculated & cached)
